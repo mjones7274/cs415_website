@@ -10,7 +10,7 @@ const UserView = () => {
 
     useEffect(() => {
         if (!window.sessionStorage.getItem("auth")) navigate('/unauthorized')
-        fetch('http://localhost:8000/users')
+        fetch('http://34.194.99.18/users')
         .then(res => res.json())
         .then(data => {
             setColumns(Object.keys(data.users[0]))

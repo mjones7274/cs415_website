@@ -9,7 +9,7 @@ const Module3 = () => {
 
   useEffect(() => {
     if (!window.sessionStorage.getItem("auth")) navigate('/unauthorized')
-    fetch('http://localhost:8000/pages/page/3')
+    fetch('http://34.194.99.18/pages/page/3')
     .then(res => res.json())
     .then(data => {
         console.log(data)

@@ -17,7 +17,7 @@ const LoginForm = (props) => {
           password: pass
       })
       try {
-          fetch('http://localhost:8000/login/',{
+          fetch('http://34.194.99.18/login/',{
           method: 'POST',
           body: payload,
           headers:{
