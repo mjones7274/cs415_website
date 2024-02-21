@@ -9,7 +9,7 @@ const Module1 = () => {
 
   useEffect(() => {
     if (!window.sessionStorage.getItem("auth")) navigate('/unauthorized')
-    fetch('http://34.194.99.18/pages/page/1')
+    fetch(process.env.REACT_APP_API_URL_BASE + '/pages/page/1')
     .then(res => res.json())
     .then(data => {
         console.log(data)

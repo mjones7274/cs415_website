@@ -17,7 +17,7 @@ const LoginForm = (props) => {
           password: pass
       })
       try {
-          fetch('http://34.194.99.18/login/',{
+          fetch(process.env.REACT_APP_API_URL_BASE + '/login/',{
           method: 'POST',
           body: payload,
           headers:{
