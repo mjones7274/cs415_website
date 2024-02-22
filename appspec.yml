@@ -7,5 +7,5 @@ files:
 file_exists_behavior: OVERWRITE
 
 Hooks:
-  - BeforeInstall: scripts/before_install.sh
-  - AfterInstall: scripts/after_install.sh
+  - BeforeInstall: scripts/start_apps.sh
+  - AfterInstall: scripts/stop_apps.sh
