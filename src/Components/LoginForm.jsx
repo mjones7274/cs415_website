@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import { FidgetSpinner } from 'react-loader-spinner';
+
 
 const LoginForm = (props) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState('');
 
     const handleSubmit = (e) => {
       e.preventDefault();
       setError(null)
-      let success = true
+      setLoading(true)
+      let success = false
       let errorText = ''
       const payload = JSON.stringify({
           email: email,
@@ -23,9 +27,12 @@ const LoginForm = (props) => {
           headers:{
               'Content-Type': 'application/json'
               }
-          }).then(res => {
+          }).then((res) => {
+                setLoading(false)
+                console.log(res)
                   if (!res.ok){
                       errorText = "Error: " + res.status + ' - '
+                      setError(errorText)
                       success = false
                       return res.json()
                   }
@@ -55,19 +62,26 @@ const LoginForm = (props) => {
           .catch(error => {
               success = false
               console.error(error)
+              console.log(error.message)
+              setError(error.message)
+              setLoading(false)
           });
           if (success) {
               setEmail('')
               setPass('')
               setError('Logged In Successfully!')
+              setLoading(false)
               //Navigate to User Page
 
           }
           else{
               setError(errorText)
+              setLoading(false)
           }
       } catch (error) {
+        setLoading(false)
           console.error(error);
+          console.log('mike')
           setError('Error Registering - Check your information and try again')
       }
     }
@@ -83,6 +97,7 @@ const LoginForm = (props) => {
                 <p className="text-success"><b>{error}</b></p>
             </form>
             <button className="link-btn" onClick={() => navigate('/register')}>Don't have an account? Register here.</button>
+            <p>{loading ? <FidgetSpinner /> : ''}</p>
     </div>
   );
 };
